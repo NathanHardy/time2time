@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--
+    Outermost LinearLayout displays two inner LinearLayouts.
+    First inner LinearLayout has a TextView for a red ! if important,
+    a second TextView for a yellow * if exciting, and a third TextView
+    for the Event Title.
+    -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewImportant"
+            android:textSize="16sp"
+            android:textColor="#FF0000"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewExciting"
+            android:textSize="16sp"
+            android:textColor="#FFFF00"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewEventTitle"
+            android:textSize="16sp"/>
+        </LinearLayout>
+    <!--
+    Second inner LinearLayout includes a TextView for the
+    Event Date and a second TextView for the time until
+    the event.
+    -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewEventDate"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewTimeLeft"
+            android:textSize="12sp"/>
+        </LinearLayout>
+
+</LinearLayout>
