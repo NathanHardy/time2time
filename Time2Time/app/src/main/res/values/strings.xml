@@ -4,5 +4,6 @@
     <string name="app_name">Time 2 Time</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_data_dao">DataDAO</string>
 
 </resources>
