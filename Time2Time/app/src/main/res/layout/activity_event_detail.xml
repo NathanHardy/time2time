@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_event_title"
+        android:text="Event Title goes here"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="24dp"
+        android:textStyle="bold"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_time_left"
+        android:text="Countdown goes here"
+        android:layout_below="@+id/tv_event_title"
+        android:layout_alignParentLeft="true"
+        android:textSize="24dp"
+        android:textColor="#f00000"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_reminders"
+        android:text="Reminders"
+        android:layout_below="@+id/tv_time_left"
+        android:layout_centerHorizontal="true"
+        android:textSize="24dp"
+        android:textStyle="bold"/>
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/list_view_reminders"
+        android:layout_below="@id/tv_reminders"
+        android:layout_above="@id/btn_edit_event"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_edit_event"
+        android:text="Edit Event"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"/>
+</RelativeLayout>
