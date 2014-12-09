@@ -8,7 +8,9 @@ import android.provider.ContactsContract;
 import android.util.Log;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by SirNathan on 12/7/2014.
@@ -72,6 +74,20 @@ public class EventDAO {
         }
         Event event = cursorToEvent(cursor);
         return event;
+    }
+
+    public List<Event> getAllEvents() {
+        List<Event> listEvents = new ArrayList<Event>();
+        Cursor cursor = mDatabase.query(DBHelper.TABLE_EVENTS, mAllColumns, null, null, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                Event event = cursorToEvent(cursor);
+                listEvents.add(event);
+                cursor.moveToNext();
+            }
+            cursor.close();
+        }
     }
 
     private Event cursorToEvent(Cursor cursor) {

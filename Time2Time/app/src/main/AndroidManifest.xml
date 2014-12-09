@@ -16,6 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.walrusoft.time2time.ActivityAddEvent"
+            android:label="@string/title_activity_activity_add_event" >
+        </activity>
     </application>
 
 </manifest>
