@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 /**
  * Created by SirNathan on 12/7/2014.
  */
+//This class creates the database and tables, manages the DB version
 public class DBHelper extends SQLiteOpenHelper {
     //table and column names for Events table
     public static final String TABLE_EVENTS = "Events";
@@ -29,6 +30,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
 
     // builds a String to create Events table
+    // this String will be executed by an SQL statement in the OnCreate
     private static final String SQL_CREATE_TABLE_EVENTS = "CREATE TABLE "
             + TABLE_EVENTS
             + "( "
@@ -40,6 +42,7 @@ public class DBHelper extends SQLiteOpenHelper {
             + ");";
 
     // builds a String to create Reminders table
+    // this String will be executed by an SQL statement in the OnCreate
     private static final String SQL_CREATE_TABLE_REMINDERS = "CREATE TABLE "
             + TABLE_REMINDERS
             + "( "

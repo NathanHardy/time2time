@@ -19,7 +19,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
-
+//first activity that gets launched
+//listview is populated with events
 public class ActivityHome extends Activity implements AdapterView.OnItemClickListener, View.OnClickListener {
 
     public static final int REQUEST_CODE_ADD_EVENT = 40;
@@ -30,6 +31,8 @@ public class ActivityHome extends Activity implements AdapterView.OnItemClickLis
     private List<Event> mListEvents;
     private EventDAO mEventDAO;
 
+    //associates the class with activity_home.xml
+    //activity_home.xml will be populated with fragment_home.xml
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,8 +45,13 @@ public class ActivityHome extends Activity implements AdapterView.OnItemClickLis
 
         initViews();
 
+        //Data Access Object uses DBHelper
+        //DBHelper creates the database and tables
+        //DAO uses DBHelper to insert/delete/update and open/close
         mEventDAO = new EventDAO(this);
         mListEvents = mEventDAO.getAllEvents();
+        //the first time the app is run, else statement sets listview to invisible
+        //and text is shown to indicate that the list is empty
         if (mListEvents != null && !mListEvents.isEmpty()) {
             mAdapter = new AdapterListEvents(this, mListEvents);
             mListViewEvents.setAdapter(mAdapter);
@@ -58,7 +66,7 @@ public class ActivityHome extends Activity implements AdapterView.OnItemClickLis
         this.mListViewEvents = (ListView) findViewById(R.id.list_view_events);
         this.mTVEmptyListEvents = (TextView) findViewById(R.id.tv_empty_list_events);
         //this.mBtnAddEvent = (ImageButton) findViewById(R.id.btn_add_event);
-        this.mListViewEvents.setOnItemClickListener(this);
+        this.mListViewEvents.setOnItemClickListener(this); //opens detail view for clicked event
         //this.mBtnAddEvent.setOnClickListener(this);
     }
 

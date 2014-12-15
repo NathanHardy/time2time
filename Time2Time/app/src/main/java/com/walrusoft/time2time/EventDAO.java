@@ -20,7 +20,10 @@ public class EventDAO {
     private Context mContext;
 
     private SQLiteDatabase mDatabase;
+    //create an instance of DBHelper to talk to the database
     private DBHelper mDBHelper;
+    //String array contains all the column names of the Event table,
+    //this is used for SQL queries involved in the creation of an Event
     private String[] mAllColumns = {
             DBHelper.COLUMN_EVENT_ID, DBHelper.COLUMN_EVENT_NAME, DBHelper.COLUMN_EVENT_DATE,
             DBHelper.COLUMN_EVENT_IMPORTANCE, DBHelper.COLUMN_EVENT_EXCITEMENT};
@@ -47,6 +50,8 @@ public class EventDAO {
         mDBHelper.close();
     }
 
+    //inserts a new row in the Event table
+    //values is a group of entries for a single row
     public void insert(ContentValues values) {
         //Cursor cursor = mDatabase.query(DBHelper.TABLE_EVENTS, mAllColumns, null, null, null, null, null);
         long insertID = mDatabase.insert(DBHelper.TABLE_EVENTS, null, values);
@@ -55,6 +60,7 @@ public class EventDAO {
         cursor.close();
     }
 
+    //creates an Event row
     public Event createEvent(String name, String date, int importance, int excitement) {
         ContentValues values = new ContentValues();
         values.put(DBHelper.COLUMN_EVENT_NAME, name);
@@ -84,6 +90,7 @@ public class EventDAO {
         return event;
     }
 
+    //used to populate ListView
     public List<Event> getAllEvents() {
         List<Event> listEvents = new ArrayList<Event>();
         Cursor cursor = mDatabase.query(DBHelper.TABLE_EVENTS, mAllColumns, null, null, null, null, null);
@@ -99,6 +106,9 @@ public class EventDAO {
         return listEvents;
     }
 
+    //called in inserts and creates
+    //creates a new instance of event
+    //then sets ID, name, date, importance, and excitement
     private Event cursorToEvent(Cursor cursor) {
         Event event = new Event();
         event.setID(cursor.getLong(0));
