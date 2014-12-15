@@ -20,6 +20,14 @@
             android:name="com.walrusoft.time2time.ActivityAddEvent"
             android:label="@string/title_activity_activity_add_event" >
         </activity>
+        <activity
+            android:name="com.walrusoft.time2time.EventDetailActivity"
+            android:label="@string/title_activity_event_detail" >
+        </activity>
+        <activity
+            android:name="com.walrusoft.time2time.ActivityAddReminder"
+            android:label="@string/title_activity_activity_add_reminder" >
+        </activity>
     </application>
 
 </manifest>

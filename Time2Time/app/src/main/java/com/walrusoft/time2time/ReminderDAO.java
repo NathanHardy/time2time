@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by SirNathan on 12/7/2014.
@@ -18,7 +20,7 @@ public class ReminderDAO {
     private SQLiteDatabase mDatabase;
     private DBHelper mDBHelper;
     private String[] mAllColumns = {
-            DBHelper.COLUMN_REMINDER_ID, DBHelper.COLUMN_REMINDER_DATE, DBHelper.COLUMN_EVENT_FID};
+            DBHelper.COLUMN_REMINDER_ID, DBHelper.COLUMN_REMINDER_DATE, DBHelper.COLUMN_REMINDER_EVENT_ID};
 
     public ReminderDAO(Context context) {
         mDBHelper = new DBHelper(context);
@@ -34,6 +36,20 @@ public class ReminderDAO {
         }
     }
 
+    public List<Reminder> getRemindersOfEvents(long eventID) {
+        List<Reminder> listReminders = new ArrayList<Reminder>();
+
+        Cursor cursor = mDatabase.query(DBHelper.TABLE_REMINDERS, mAllColumns, DBHelper.COLUMN_REMINDER_EVENT_ID + " = ?", new String[] {String.valueOf(eventID)}, null, null, null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            Reminder reminder = cursorToReminder(cursor);
+            listReminders.add(reminder);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return listReminders;
+    }
+
     public void open() throws SQLException {
         mDatabase = mDBHelper.getWritableDatabase();
     }
@@ -45,7 +61,7 @@ public class ReminderDAO {
     public Reminder createReminder(String date, long eventID) {
         ContentValues values = new ContentValues();
         values.put(DBHelper.COLUMN_REMINDER_DATE, date);
-        values.put(DBHelper.COLUMN_EVENT_FID, eventID);
+        values.put(DBHelper.COLUMN_REMINDER_EVENT_ID, eventID);
 
         long insertID = mDatabase.insert(DBHelper.TABLE_REMINDERS, null, values);
         Cursor cursor = mDatabase.query(DBHelper.TABLE_REMINDERS, mAllColumns, DBHelper.COLUMN_REMINDER_ID + " = " + "'" + insertID + "'", null, null, null, null);

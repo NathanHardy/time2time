@@ -1,32 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:id="@+id/container"
     android:layout_width="match_parent" android:layout_height="match_parent"
-    tools:context=".ActivityHome" tools:ignore="MergeRootFrame">
-
-    <ImageButton
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:id="@+id/btn_add_event"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_margin="8dp"
-        android:background="@android:color/transparent"
-        android:src="@android:drawable/ic_menu_add"
-        />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_empty_list_events"
-        android:text="@string/empty_list"
-        android:visibility="gone"/>
-
-    <ListView
-        android:id="@+id/list_events"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="4dp" />
-
-    
-</RelativeLayout>
+    tools:context=".ActivityHome" tools:ignore="MergeRootFrame"/>

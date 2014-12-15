@@ -47,6 +47,14 @@ public class EventDAO {
         mDBHelper.close();
     }
 
+    public void insert(ContentValues values) {
+        //Cursor cursor = mDatabase.query(DBHelper.TABLE_EVENTS, mAllColumns, null, null, null, null, null);
+        long insertID = mDatabase.insert(DBHelper.TABLE_EVENTS, null, values);
+        Cursor cursor = mDatabase.query(DBHelper.TABLE_EVENTS, mAllColumns, DBHelper.COLUMN_EVENT_ID + " = " + "'"+insertID+"'", null, null, null, null);
+        cursor.moveToFirst();
+        cursor.close();
+    }
+
     public Event createEvent(String name, String date, int importance, int excitement) {
         ContentValues values = new ContentValues();
         values.put(DBHelper.COLUMN_EVENT_NAME, name);
@@ -88,6 +96,7 @@ public class EventDAO {
             }
             cursor.close();
         }
+        return listEvents;
     }
 
     private Event cursorToEvent(Cursor cursor) {

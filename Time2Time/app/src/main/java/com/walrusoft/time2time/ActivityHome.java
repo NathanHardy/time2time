@@ -13,13 +13,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.List;
 
 
-public class ActivityHome extends Activity implements OnItemClickListener, OnClickListener {
+public class ActivityHome extends Activity implements AdapterView.OnItemClickListener, View.OnClickListener {
 
     public static final int REQUEST_CODE_ADD_EVENT = 40;
     public static final String EXTRA_ADDED_EVENT = "extra_key_added_event";
@@ -54,7 +55,7 @@ public class ActivityHome extends Activity implements OnItemClickListener, OnCli
     }
 
     private void initViews() {
-        this.mListViewEvents = (ListView) findViewById(R.id.list_events);
+        this.mListViewEvents = (ListView) findViewById(R.id.list_view_events);
         this.mTVEmptyListEvents = (TextView) findViewById(R.id.tv_empty_list_events);
         //this.mBtnAddEvent = (ImageButton) findViewById(R.id.btn_add_event);
         this.mListViewEvents.setOnItemClickListener(this);
@@ -64,13 +65,21 @@ public class ActivityHome extends Activity implements OnItemClickListener, OnCli
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.btn_add_event:
+            case R.id.add_activity:
                 Intent intent = new Intent(this, ActivityAddEvent.class);
                 startActivityForResult(intent, REQUEST_CODE_ADD_EVENT);
                 break;
             default:
                 break;
         }
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Event clickedEvent = mAdapter.getItem(position);
+        Intent intent = new Intent(this, EventDetailActivity.class);
+        intent.putExtra(EventDetailActivity.EXTRA_SELECTED_EVENT_ID, clickedEvent.getID());
+        startActivity(intent);
     }
 
     @Override
@@ -89,6 +98,11 @@ public class ActivityHome extends Activity implements OnItemClickListener, OnCli
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            return true;
+        }
+
+        if (id == R.id.add_activity) {
+            startActivity(new Intent (ActivityHome.this, ActivityAddEvent.class));
             return true;
         }
 
